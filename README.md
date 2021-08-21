@@ -173,3 +173,67 @@ In order to perform supervised machine learning, information on each name of sta
 		else:
 		  data['Station'][i] = temp
 	  return data
+
+## Data Visualization
+Let's take a look on the bar pressure visualization on Downtown line:
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/Downtownline_BarPressure.PNG)
+>iPhone 12 Pro has a much higher sensitiivty than S6 Edge.
+
+Then, visualization on the mode of MRT:
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/Downtownline_iphone_barpressure.PNG)
+>'Idle' mode indicates the MRT is not moving, while 'MRT' mode indicates the MRT is in motion.
+
+## Features Selection
+### Permutation Features Importance
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/PermutationFeaturesImportance.png)
+>The higher the score, the more important (influencial) is the parameter
+
+Thus, Gyrometer readings (Gyr_X, Gyr_Y, Gyr_X) are omitted from the prediction.
+### Dendogram
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/Dendogram.PNG)
+>The closer the parameters are grouped, the more similar the effect they have on the results prediction
+
+### Correlation Matrix
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/CorrelationMatrix.png)
+>Range between -1 to 1: with -1 meaning perfect negative correlation and 1 meaning perfect positive correlation
+
+#### Final features selected
+Bar Pressure, Acceleration Z, Acceleration Y, Magnetic Field Y, Magnetic Field Z are the parameters selected to perform prediction.
+
+## Random Forest
+Random Forest is trained with 10 estimators and 50 max depth using 70% of the data as training dataset
+
+### Direct Prediction results
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/DirectPredicting.PNG)
+>Direct prediction (iPhone model predict on iPhone dataset etc) are good, with F1-score close to 1.
+
+### Cross Prediction results
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/CrossPredicting.PNG)
+>Cross prediction (iPhone model predict on S6 Edge dataset etc) are bad, with F1-score close to 0.
+
+## Clustering
+Due to bad cross prediction results, clustering is carried out to improve the prediction.
+### Silhoutte Analysis
+In order to get the optimum number of clusters, silhoutte analysis showed that three clusters are the optimum number:
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/SilhoutteAnalysis.PNG)
+>Three clusters give a silhoutte score of around 0.8
+
+### K-means clustering visualization
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/ClusteringVisualization.PNG)
+>Three clusters distribution are distinct, such that one cluster occupied the zero signal, one occupied the positive signal while one occupied the negative signal.
+
+### Random forest model based on cluster
+Random forest is trained based on the clustering results, and the prediction results are great as below:
+![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/ClusteringPrediction.PNG)
+>All three clusters give F1-score above 0.8, which is quite accurate.
+
+# Conclusion
+Without GPS data, multi-sensory data collected in smartphones can be used to:
+
+1. Predict travel mode of high accuracy with current model
+2. Cluster and predict current station
+
+Leads to possible underground location sensing using the sensors found in smartphones.
+
+## Suggestions for improvement
+Prediction can be done based on mode sequence, which increases accuracy after each prediction
