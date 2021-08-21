@@ -5,6 +5,12 @@ Location information about commuter activities is vital for planning for travel 
 
 The Mobility Sensing Project aims to find innovative and novel ways to conduct location sensing using multi-sensory data collected in smartphones (Iphone 12 Pro and S6 Edge).
 
+**Table of Contents**
+
+[TOCM]
+
+[TOC]
+
 ## Data Pipeline Architecture
 
 ![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/Pipeline.png)
