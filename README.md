@@ -15,7 +15,7 @@ The Mobility Sensing Project aims to find innovative and novel ways to conduct l
 ![](https://raw.githubusercontent.com/kaiyang7766/UndergroundMobilitySensing/main/img/Data.PNG)
 >Key variables: Linear Acceleration (Acc_Lin), Acceleration (Acc), Bar_Pressure, Gyrometer (Gyr), Magnetism (Mag)
 
-## Data Cleaning
+## Data Cleaning and Preprocessing
 First, data is cleaned by normalizing all time and variable units:
 
 	import matplotlib.pyplot as plt
