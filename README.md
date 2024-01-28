@@ -1,5 +1,4 @@
 # Underground Mobility Sensing Project using multi-sensory data with Machine Learning
-> You can run the code directly from Google colab here: https://colab.research.google.com/drive/1AaXqVFb-3jz5-0sYdyr-hQEkTokgjhrR?usp=sharing (downloading dataset is not needed)
 
 Location information about commuter activities is vital for planning for travel disruptions and infrastructural development. However, GPS connectivity is lost when underground in our MRT networks. 
 
